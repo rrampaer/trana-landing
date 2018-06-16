@@ -1,0 +1,43 @@
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+body,
+.font-family-primary {
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.9;
+}
+a,
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-family-secondary {
+	font-family: 'Roboto', sans-serif;
+}
+
+/* Logo */
+.logo img {
+	width: 100%;
+}
+.logo img.logo-img {
+	max-width: 150px;
+}
+.logo img.logo-icon {
+	max-width: 40px;
+}
+
+/* Navbar */
+.header .navbar-nav .nav-link:not(.btn) {	
+  padding-right: 0!important;
+  padding-left: 0!important;
+  margin-right: .5rem;
+  margin-left: .5rem;
+}

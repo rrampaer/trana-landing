@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/activity.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="4.0.0";
+      analytics.load("4iTNyjvrXioHgIPd1NdtkPaEmanlR5JT");
+      analytics.identify(window.location.search.split("=")[1]);
+      
+      <% if (locals.sufferScore) { %> 
+        analytics.page("Activity", {title: "Activity", sufferScore: <%= sufferScore %>}) 
+      <% } %>;
+                                    
+      <% if (typeof locals.sufferScore == "undefined") { %>
+      analytics.page("Activity", {title: "Activity", sufferScore: false})
+      <% } %>;
+      
+      }}();
+      //console.log(window.location.search.split("=")[1]);
+    </script>
+  </head>
+  <body>
+    
+    <!-- Suffer Score if there is one -->
+    <div class="paper-lap">
+      <h1 class="paper-header">
+        Trana Score
+      </h1>
+      <% if (locals.sufferScore) { %>
+      <h2 class="suffer"><%= sufferScore %> <% if (sufferScore < 10) { %> <img src="https://cdn.glitch.com/cbb18828-dac2-4f9d-8f97-934de68a2012%2Fimage.png?1509286968639" style="width:75px;height:75px;">
+          <% } else if (sufferScore < 15){ %> <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/facebook/65/slightly-smiling-face_1f642.png" style="width:75px;height:75px;">
+          <% } else if (sufferScore < 25) { %> <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/facebook/65/astonished-face_1f632.png" style="width:75px;height:75px;">
+          <% } else { %> <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/facebook/65/face-screaming-in-fear_1f631.png" style="width:75px;height:75px;"> <% } %>
+      </h2>
+      <p class="legend">Where <b>10</b> is a 50-minute easy run</p>
+      <% } else { %> <p> In order to have a suffer score you need to compute your fitness score. <a href="m.me/tranabot?ref=Vdot">Click here to do so</a> </p> <% } %>
+    </div>
+    
+    <!-- Laps -->
+    <div class="paper-lap">
+      <h1 class="paper-header">
+        Activity's Laps
+      </h1>
+      <table>
+        <tr>
+          <th class="label">Lap</th>
+          <th class="label">Time</th> 
+          <th class="label">Distance</th>
+          <th class="label">Pace</th>
+          <th class="label">Type</th>
+        </tr>
+        <% if (locals.laps) {for(var i=0; i<laps.length-1; i++) {%>
+          <tr>
+            <th><%= laps[i].lap %></th>
+            <th><%= laps[i].time %></th> 
+            <th><%= laps[i].distance %></th>
+            <th><%= laps[i].pace %></th>
+            <th><%= laps[i].type %></th>
+          </tr>
+        <% }} %>
+        <% if (locals.laps){%>
+        <tr>
+          <td class="total"><%= laps[laps.length-1].lap %></td>
+          <td class="total"><%= laps[laps.length-1].time %></td> 
+          <td class="total"><%= laps[laps.length-1].distance %></td>
+          <td class="total"><%= laps[laps.length-1].pace %></td>
+          <td class="total"> </td>
+        </tr>
+        <% } %>
+        <% if (typeof locals.laps == "undefined") {%>
+        <tr>
+          <td class="total">Your watch does not support laps, suffer score & laps unavailable :(</td>
+        </tr>
+        <% } %>
+  
+        
+      </table>
+    </div>
+    <div>
+      <img class="logo" src="https://cdn.glitch.com/1792f543-6e4f-4ab0-b52c-681c76d9a163%2Ftrana_logo.png?1508083964592" alt="logo">
+    </div>
+    <div class="soon">
+       MORE SOON
+    </div>
+  </body>
+</html>
